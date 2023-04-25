@@ -20,8 +20,8 @@ namespace ProjAPICustomer.Controllers
         [HttpGet]
         public ActionResult<List<City>> Get() => _cityService.Get();
 
-        [HttpGet("{id:length(24)}" , Name = "GetCity")]
 
+        [HttpGet("{id:length(24)}" , Name = "GetCity")]
         public ActionResult<City> Get(string id)
         {
             var city = _cityService.Get(id);
@@ -37,7 +37,6 @@ namespace ProjAPICustomer.Controllers
         }
 
         [HttpPut("{id:length(24)}")]
-
         public ActionResult Update(string id, City city)
         {
             var c = _cityService.Get(id);

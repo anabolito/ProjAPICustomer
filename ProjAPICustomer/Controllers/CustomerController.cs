@@ -28,8 +28,8 @@ namespace ProjAPICustomer.Controllers
         [HttpGet]
         public ActionResult<List<Customer>> Get() => _customerService.Get();
 
-        [HttpGet("{id:length(24)}", Name = "GetCustomer")]
 
+        [HttpGet("{id:length(24)}", Name = "GetCustomer")]
         public ActionResult<Customer> Get(string id)
         {
             var customer = _customerService.Get(id);
@@ -41,14 +41,12 @@ namespace ProjAPICustomer.Controllers
         [HttpPost]
         public ActionResult<Customer> Create(Customer customer)
         {
-
-            // address.City = _cityService.Create();//?
-            // customer.Address = _addressService.Create();
-
+            customer.Address.City = _cityService.Create(customer.Address.City);
+            customer.Address = _addressService.Create(customer.Address);
             return _customerService.Create(customer);
         }
-        [HttpPut("{id:length(24)}")]
 
+        [HttpPut("{id:length(24)}")]
         public ActionResult Update(string id, Customer customer)
         {
             var c = _customerService.Get(id);
